@@ -1,0 +1,25 @@
+## This Script opens Keynote and adjusts Presenter Notes for readability by LJRich from a script by DerickFay
+## This will strip out any previous formatting and make your notes uniform 
+## make sure the document you want to alter is the active one i.e. the window is on top
+## OK let's go
+
+tell application "Keynote"
+	
+	tell document 1
+		set theSlides to slides
+		repeat with s in the slides
+			tell presenter notes of s
+				set font to "Helvetica"
+				
+				## choose your font size below (good values 16 to 24)
+				set size to 20
+				
+				## choose the colour of your font here. Note in dark mode "black" should appear white
+				set color of it to "black"
+				
+				## I improve readability by a small gap under each line (good value 1.0 to 2.0)
+				set spacing to 1.2
+			end tell
+		end repeat
+	end tell
+end tell

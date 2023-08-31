@@ -1,0 +1,19 @@
+## Count Words in Pages then calculate how long it takes to read aloud. Cobbled together from existing stack overflow results
+## Ask the user to select a Pages document
+set theDocument to choose file with prompt "Choose a Pages document to analyze:"
+
+tell application "Pages"
+	##  Open the document
+	set theDoc to open theDocument
+	## Count how many words in the document
+	set wordCount to count words of body text of theDoc
+	## Calculate the estimated speaking time in seconds - if you speak faster, make this a higher number
+	set totalSeconds to wordCount / 3
+	##  Convert the totalSeconds to minutes and seconds
+	set theMinutes to totalSeconds div 60
+	set theSeconds to totalSeconds mod 60 as integer
+	##  Display the results
+	display dialog "The document has " & wordCount & " words, which would take around " & theMinutes & " minutes and " & theSeconds & " seconds."
+	##  Close the document
+	Close theDoc without saving
+end tell
